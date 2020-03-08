@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  mls-stomp:
+    image: wrk-fmd/mls-stomp:${MLS_TAG:-latest}
+    build:
+      context: .
+      args:
+        MODULE: stomp-endpoint
+        APP: stomp-endpoint
+    ports:
+      - 8091:8080
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    volumes:
+      - type: bind
+        source: ${MLS_STOMP_CONFIG:-./stomp-endpoint/src/main/resources}
+        target: /config
+        read_only: true
+      - type: bind
+        source: ${MLS_LOG:-./log}
+        target: /log
+
+networks:
+  default:
+    name: mls-network

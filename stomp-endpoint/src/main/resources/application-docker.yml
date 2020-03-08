@@ -1,0 +1,17 @@
+# This profile uses the docker-compose DNS names and is activated for the default docker-compose build
+
+application:
+  broker:
+    host: mls-amqp
+    username: mls-rabbitmq-user
+    password: mls-rabbitmq-pass
+spring:
+  rabbitmq:
+    host: mls-amqp
+    username: mls-rabbitmq-user
+    password: mls-rabbitmq-pass
+logging:
+  config: /config/log-docker.xml
+  level:
+    root: info
+    at.wrk.fmd.mls: debug

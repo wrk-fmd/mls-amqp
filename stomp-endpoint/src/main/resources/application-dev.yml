@@ -1,0 +1,16 @@
+server:
+  port: 8091
+application:
+  broker:
+    host: localhost
+    username: mls-rabbitmq-user
+    password: mls-rabbitmq-pass
+spring:
+  rabbitmq:
+    host: localhost
+    username: mls-rabbitmq-user
+    password: mls-rabbitmq-pass
+logging:
+  level:
+    root: info
+    at.wrk.fmd.mls: debug
