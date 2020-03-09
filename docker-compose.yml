@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   mls-stomp:
-    image: wrk-fmd/mls-stomp:${MLS_TAG:-latest}
+    image: wrkfmdit/mls-stomp:${MLS_TAG:-latest}
     build:
       context: .
       args:
