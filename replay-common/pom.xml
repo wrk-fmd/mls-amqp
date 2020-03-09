@@ -6,7 +6,7 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>replay-base</artifactId>
-        <version>3.0.0-RELEASE</version>
+        <version>3.0.1-RELEASE</version>
     </parent>
 
     <artifactId>replay-common</artifactId>
