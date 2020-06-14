@@ -6,8 +6,8 @@
 
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
-        <artifactId>replay-base</artifactId>
-        <version>3.0.1-RELEASE</version>
+        <artifactId>amqp-base</artifactId>
+        <version>3.0.2-RELEASE</version>
     </parent>
 
     <artifactId>stomp-application</artifactId>

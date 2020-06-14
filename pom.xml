@@ -6,13 +6,13 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>mls-parent</artifactId>
-        <version>3.0.1-RELEASE</version>
+        <version>3.0.2-RELEASE</version>
     </parent>
 
-    <artifactId>replay-base</artifactId>
-    <version>3.0.1-RELEASE</version>
+    <artifactId>amqp-base</artifactId>
+    <version>3.0.2-RELEASE</version>
     <packaging>pom</packaging>
-    <name>MLS Replay handler base module</name>
+    <name>MLS AMQP handler base module</name>
 
     <modules>
         <module>eventbus</module>

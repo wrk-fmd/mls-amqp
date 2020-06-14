@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
-        <artifactId>replay-base</artifactId>
-        <version>3.0.1-RELEASE</version>
+        <artifactId>amqp-base</artifactId>
+        <version>3.0.2-RELEASE</version>
     </parent>
 
     <artifactId>amqp-common</artifactId>
-    <name>MLS Replay service commons</name>
+    <name>MLS AMQP service commons</name>
     <description>This module provides common tools for transmitting messages with AMQP</description>
 
     <dependencies>
