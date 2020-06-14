@@ -30,7 +30,7 @@ public interface EventHandler<E extends Event> {
      * @param event The event data
      * @return True iff the event can be handled
      */
-    default boolean canHandle(Event event) {
-        return type().isInstance(event);
+    default boolean canHandle(E event) {
+        return true;
     }
 }

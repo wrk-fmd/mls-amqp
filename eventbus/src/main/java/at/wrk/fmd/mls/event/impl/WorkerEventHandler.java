@@ -42,7 +42,7 @@ class WorkerEventHandler<E extends Event> implements EventHandler<E>, Runnable, 
     }
 
     @Override
-    public boolean canHandle(final Event event) {
+    public boolean canHandle(final E event) {
         return delegate.canHandle(event);
     }
 

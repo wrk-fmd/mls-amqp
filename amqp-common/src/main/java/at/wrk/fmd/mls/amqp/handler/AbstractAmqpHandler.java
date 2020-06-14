@@ -6,7 +6,6 @@ import at.wrk.fmd.mls.amqp.dto.ReplayStartDto;
 import at.wrk.fmd.mls.amqp.event.AmqpEvent;
 import at.wrk.fmd.mls.amqp.event.NotificationMessage;
 import at.wrk.fmd.mls.amqp.event.ReplayRequest;
-import at.wrk.fmd.mls.event.Event;
 import at.wrk.fmd.mls.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,8 +51,8 @@ public abstract class AbstractAmqpHandler<T> implements EventHandler<AmqpEvent> 
     }
 
     @Override
-    public boolean canHandle(final Event event) {
-        return event instanceof AmqpEvent && target.equals(((AmqpEvent) event).getTarget());
+    public boolean canHandle(final AmqpEvent event) {
+        return target.equals(event.getTarget());
     }
 
     private void handle(final NotificationMessage message) {

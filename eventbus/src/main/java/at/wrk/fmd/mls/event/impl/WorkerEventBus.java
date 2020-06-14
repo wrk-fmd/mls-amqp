@@ -28,8 +28,9 @@ class WorkerEventBus implements EventBus {
     public <E extends Event> void publish(final E event) {
         @SuppressWarnings("unchecked")
         long matched = workers.values().stream()
-                .filter(h -> h.canHandle(event))
+                .filter(h -> h.type().isInstance(event))
                 .map(h -> (EventHandler<E>) h)
+                .filter(h -> h.canHandle(event))
                 .peek(h -> h.handle(event))
                 .count();
         if (matched > 0) {
