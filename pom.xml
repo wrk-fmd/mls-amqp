@@ -6,7 +6,7 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>mls-parent</artifactId>
-        <version>3.0.0-RELEASE</version>
+        <version>3.0.1-RELEASE</version>
     </parent>
 
     <artifactId>replay-base</artifactId>
@@ -16,9 +16,9 @@
 
     <modules>
         <module>eventbus</module>
-        <module>replay-common</module>
-        <module>replay-service</module>
+        <module>amqp-common</module>
         <module>stomp-endpoint</module>
+        <module>stomp-application</module>
     </modules>
 
     <repositories>

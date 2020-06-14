@@ -1,16 +1,12 @@
 package at.wrk.fmd.mls.stomp.interceptor;
 
-import static at.wrk.fmd.mls.replay.ReplayConstants.REPLAY_TRIGGER_EXCHANGE;
-import static at.wrk.fmd.mls.replay.ReplayConstants.ROUTING_KEY_HEADER;
 import static java.util.Objects.requireNonNull;
 
+import at.wrk.fmd.mls.amqp.event.ReplayRequest;
+import at.wrk.fmd.mls.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.AmqpException;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
@@ -25,11 +21,11 @@ public class StompOutboundInterceptor extends AbstractStompInterceptor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private final AmqpTemplate amqpTemplate;
+    private final EventBus eventBus;
 
     @Autowired
-    public StompOutboundInterceptor(AmqpTemplate amqpTemplate) {
-        this.amqpTemplate = requireNonNull(amqpTemplate, "AmqpTemplate must not be null");
+    public StompOutboundInterceptor(EventBus eventBus) {
+        this.eventBus = requireNonNull(eventBus, "EventBus must not be null");
     }
 
     @Override
@@ -83,18 +79,10 @@ public class StompOutboundInterceptor extends AbstractStompInterceptor {
             return;
         }
 
-        try {
-            // Send a null-message (as JSON), using headers for the real information
-            LOG.debug("Triggering replay of {} for {}", destination, queueName);
-            amqpTemplate.convertAndSend(REPLAY_TRIGGER_EXCHANGE, destinationParts[2], "null", m -> {
-                MessageProperties p = m.getMessageProperties();
-                p.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                p.setReplyTo(queueName);
-                p.setHeader(ROUTING_KEY_HEADER, destinationParts.length >= 4 ? destinationParts[3] : null);
-                return m;
-            });
-        } catch (AmqpException e) {
-            LOG.error("Error triggering initial data replay for {}, {}", destination, queueName, e);
-        }
+        // Publish the request to the event bus
+        LOG.debug("Triggering replay of {} for {}", destination, queueName);
+        String exchangeName = destinationParts[2];
+        String routingKey = destinationParts.length >= 4 ? destinationParts[3] : null;
+        eventBus.publish(new ReplayRequest(exchangeName, queueName, routingKey));
     }
 }

@@ -6,15 +6,15 @@ services:
     build:
       context: .
       args:
-        MODULE: stomp-endpoint
-        APP: stomp-endpoint
+        MODULE: stomp-application
+        APP: stomp-application
     ports:
       - 8091:8080
     environment:
       SPRING_PROFILES_ACTIVE: docker
     volumes:
       - type: bind
-        source: ${MLS_STOMP_CONFIG:-./stomp-endpoint/src/main/resources}
+        source: ${MLS_STOMP_CONFIG:-./stomp-application/src/main/resources}
         target: /config
         read_only: true
       - type: bind

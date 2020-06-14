@@ -10,9 +10,13 @@
         <version>3.0.1-RELEASE</version>
     </parent>
 
-    <artifactId>stomp-endpoint</artifactId>
-    <name>MLS Replay handler STOMP endpoint</name>
-    <description>This module provides the logic used by an application to listen for STOMP subscriptions and replay initial data</description>
+    <artifactId>stomp-application</artifactId>
+    <name>MLS Replay handler STOMP endpoint application</name>
+    <description>This module provides an standalone application implementing a STOMP endpoint</description>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <!-- Eventbus -->
@@ -29,39 +33,32 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- STOMP endpoint logic -->
+        <dependency>
+            <groupId>at.wrk.fmd.mls</groupId>
+            <artifactId>stomp-endpoint</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.projectreactor.netty</groupId>
-            <artifactId>reactor-netty</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-configuration-processor</artifactId>
-                            <version>${spring.boot.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
