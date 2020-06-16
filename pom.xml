@@ -6,11 +6,11 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>mls-parent</artifactId>
-        <version>3.0.2-RELEASE</version>
+        <version>3.0.3-RELEASE</version>
     </parent>
 
     <artifactId>amqp-base</artifactId>
-    <version>3.0.2-RELEASE</version>
+    <version>3.0.3-RELEASE</version>
     <packaging>pom</packaging>
     <name>MLS AMQP handler base module</name>
 

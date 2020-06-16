@@ -7,12 +7,13 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>amqp-base</artifactId>
-        <version>3.0.2-RELEASE</version>
+        <version>3.0.3-RELEASE</version>
     </parent>
 
     <artifactId>stomp-endpoint</artifactId>
     <name>MLS Replay handler STOMP endpoint</name>
-    <description>This module provides the logic used by an application to listen for STOMP subscriptions and replay initial data</description>
+    <description>This module provides the logic used by an application to listen for STOMP subscriptions and replay initial data
+    </description>
 
     <dependencies>
         <!-- Eventbus -->
@@ -29,10 +30,22 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Auth common -->
+        <dependency>
+            <groupId>at.wrk.fmd.mls</groupId>
+            <artifactId>auth-common</artifactId>
+            <version>${mls.auth.version}</version>
+        </dependency>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-messaging</artifactId>
         </dependency>
 
         <dependency>

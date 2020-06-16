@@ -7,7 +7,7 @@
     <parent>
         <groupId>at.wrk.fmd.mls</groupId>
         <artifactId>amqp-base</artifactId>
-        <version>3.0.2-RELEASE</version>
+        <version>3.0.3-RELEASE</version>
     </parent>
 
     <artifactId>stomp-application</artifactId>

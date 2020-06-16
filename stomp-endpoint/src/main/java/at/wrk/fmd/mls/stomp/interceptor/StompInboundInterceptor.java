@@ -90,7 +90,7 @@ public class StompInboundInterceptor extends AbstractStompInterceptor {
             Instant lastConnection = Instant.ofEpochSecond(Long.parseLong(lastConnectionHeader));
 
             // Check if last connection is older than the expiration duration, using 25% error margin
-            return Instant.now().minusSeconds(EXPIRES.toSeconds() * 45).isAfter(lastConnection);
+            return Instant.now().minusSeconds(EXPIRES.toSeconds() * 3 / 4).isAfter(lastConnection);
         } catch (NumberFormatException e) {
             // Resend for invalid header values
             return true;
